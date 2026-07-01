@@ -23,6 +23,37 @@ GraalVM.
 (log/consignment "C1" sh [leg1 leg2] :declared-value 1000)
 ```
 
+## Operator console (UI/UX)
+
+A read-only HTML dashboard renders tracking validation, shipments (status badges) and consignments for an operator. Built on
+[`kotoba-lang/html`](https://github.com/kotoba-lang/html) (Hiccup→HTML) +
+[`kotoba-lang/css`](https://github.com/kotoba-lang/css) (EDN→CSS). Pure data
+→ markup; the console never exposes a write surface (no `<form>`/`<button>`)
+— writes stay behind the governor.
+
+```clojure
+(require '[kotoba.logistics.ui :as ui])
+
+(ui/dashboard
+  {:trackings ["1Z999AA101234"]
+   :shipments [(log/shipment "SH1" "Tokyo" "Osaka" "Yamato" :status :in-transit)]
+   :consignments [(log/consignment "C1" sh [leg])]})
+;; => "<html>...read-only · governor-gated...</html>"
+```
+
+## Export (CSV / JSON)
+
+Audit-grade CSV (RFC-4180 quoting) and JSON (quote/backslash/newline
+escaped) for tracking validation, shipments and consignments.
+
+```clojure
+(require '[kotoba.logistics.export :as ex])
+
+(ex/trackings->csv trackings)
+(ex/shipments->csv shipments)  ; status
+(ex/trackings->json trackings)
+```
+
 ## License
 
 Apache License 2.0.
