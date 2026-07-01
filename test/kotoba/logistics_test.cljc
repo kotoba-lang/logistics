@@ -24,3 +24,17 @@
         c (log/consignment "C1" s [(log/leg "A" "B" :road)] :declared-value 1000)]
     (is (= "SH1" (:cons/shipment c)))
     (is (= 1 (count (:cons/route c))))))
+
+(deftest tracking-edge-cases
+  (testing "short tracking is rejected"
+    (is (not (log/tracking-valid? "ABC"))))
+  (testing "non-string is rejected"
+    (is (not (log/tracking-valid? nil))))
+  (testing "spaces and dashes are normalized away"
+    (is (= "1Z999AA101234567" (log/normalize-tracking "1Z-999 AA 101-234567")))))
+
+(deftest shipment-edge-cases
+  (testing "unknown status is rejected"
+    (is (nil? (log/shipment "SH1" "A" "B" "C" :status :frob))))
+  (testing "default status is :booked"
+    (is (= :booked (:shipment/status (log/shipment "SH1" "A" "B" "C"))))))
