@@ -65,6 +65,12 @@ escaped) for tracking validation, shipments and consignments.
 (ex/trackings->json trackings)
 ```
 
+## Test
+
+```sh
+clojure -M:test
+```
+
 ## License
 
 Apache License 2.0.
