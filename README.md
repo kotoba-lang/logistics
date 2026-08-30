@@ -18,7 +18,7 @@ GraalVM.
 | | |
 |---|---|
 | Role | capability |
-| Tests | 25 assertions, all green |
+| Tests | 55 tests / 618 assertions on the JVM, 46 / 468 of them under nbb, all green |
 | Operator console (UI/UX) | yes |
 | Export (CSV/JSON) | yes |
 | Shared CSS design system | yes (css.core/operator-theme) |
@@ -54,8 +54,11 @@ A read-only HTML dashboard renders tracking validation, shipments (status badges
 
 ## Export (CSV / JSON)
 
-Audit-grade CSV (RFC-4180 quoting) and JSON (quote/backslash/newline
-escaped) for tracking validation, shipments and consignments.
+Audit-grade CSV (RFC 4180 quoting: comma, quote, LF and a bare CR) and JSON
+(RFC 8259 section 7: quote, backslash, and every control character
+U+0000-U+001F) for tracking validation, shipments and consignments. Both are
+tested by reading the output back with a reader written from the grammar, not
+by matching substrings in it.
 
 ```clojure
 (require '[kotoba.logistics.export :as ex])
@@ -68,8 +71,23 @@ escaped) for tracking validation, shipments and consignments.
 ## Test
 
 ```sh
-clojure -M:test
+clojure -M:test                              # everything, including the console
+nbb --classpath src:test run_tests.cljs      # the portable half, on a second runtime
 ```
+
+The nbb run covers `kotoba.logistics` and `kotoba.logistics.export` -- the two
+namespaces that claim to be portable and have no dependencies outside
+`clojure.core`/`clojure.string`. It exists because a `.cljc` portability claim
+that only ever runs on the JVM is a docstring: `json-hex4` avoids `Integer`
+interop on purpose, and only a second runtime can tell whether it still does.
+
+It reports three outcomes, not two: `0` with the marker `logistics: all green`,
+`1` for a failure, and `2` for *refused* -- too few tests or assertions ran for
+a pass to mean anything. Without that floor, a namespace dropped from the
+runner's list prints the same `0 failures, 0 errors` as a full green run.
+
+`kotoba.logistics.ui` is JVM-only here because it requires `html.core` and
+`css.core`, which arrive as git dependencies.
 
 ## License
 
