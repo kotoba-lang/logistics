@@ -8,7 +8,7 @@
   failures these exporters actually have: a row that no longer has as many
   fields as its header, a quote that was opened and never closed, a control
   character that makes the document unreadable to every conforming parser."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing]]
             [kotoba.logistics :as log]
             [kotoba.logistics.export :as ex]

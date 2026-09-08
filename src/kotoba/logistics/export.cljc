@@ -3,7 +3,7 @@
 
   Renders tracking validation, shipments and consignments to CSV and JSON for
   settlement audit and downstream reporting. Pure data → text: no network."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kotoba.logistics :as log]))
 
 (defn- csv-cell [v]
