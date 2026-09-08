@@ -7,7 +7,7 @@
   and structural validation, route legs, and freight/consignment records.
 
   Portable (.cljc) across JVM / ClojureScript / SCI / GraalVM."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ---------------------------------------------------------------------------
 ;; Tracking number — carrier-agnostic structural contract
@@ -18,7 +18,7 @@
   for non-strings."
   [s]
   (when (string? s)
-    (str/upper-case (str/replace s #"[ \-]" ""))))
+    (str/upper (str/replace s #"[ \-]" ""))))
 
 (defn tracking-valid?
   "True when s is a plausible tracking number: 8..35 chars, upper alnum."

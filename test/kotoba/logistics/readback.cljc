@@ -24,7 +24,7 @@
 
   Portable (.cljc): no host interop, so the same oracle judges the JVM run and
   the ClojureScript run of the suite."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn- fail [why detail]
   (throw (ex-info (str "malformed document: " (name why))

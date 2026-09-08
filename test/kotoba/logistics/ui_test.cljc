@@ -1,5 +1,5 @@
 (ns kotoba.logistics.ui-test
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing]]
             [kotoba.logistics :as log]
             [kotoba.logistics.ui :as ui]))
@@ -109,7 +109,7 @@
 
 (deftest the-console-renders-no-write-surface-at-all
   (doseq [ctx [{} populated]]
-    (let [html (str/lower-case (ui/dashboard ctx))]
+    (let [html (str/lower (ui/dashboard ctx))]
       (doseq [s write-surfaces]
         (is (not (str/includes? html s))
             (str "the console must not contain " s))))))
