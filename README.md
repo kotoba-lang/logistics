@@ -72,7 +72,7 @@ by matching substrings in it.
 
 ```sh
 clojure -M:test                              # everything, including the console
-nbb --classpath src:test run_tests.cljs      # the portable half, on a second runtime
+nbb --classpath src:test run_tests.cljk      # the portable half, on a second runtime
 ```
 
 The nbb run covers `kotoba.logistics` and `kotoba.logistics.export` -- the two
