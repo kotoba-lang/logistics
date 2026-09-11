@@ -1,7 +1,7 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; run_tests.cljk — the portable half of the suite, on a second runtime.
 ;;
-;;   nbb --classpath src:test run_tests.cljk
+;;   kbb --backend sci --classpath src:test run_tests.cljk
 ;;
 ;; ## Why a second runner exists
 ;;
@@ -11,12 +11,12 @@
 ;; docstring, not a property -- and the failure mode is specific: a host
 ;; interop call that a JVM run cannot see is wrong. `kotoba.logistics.export`
 ;; already carries a comment saying `json-hex4` avoids `Long`/`Integer` interop
-;; "that would only work on :clj". Nothing tested that. `clojure -M:test`
+;; "that would only work on :clj". Nothing tested that. `kbb -M:test`
 ;; structurally cannot: it is the runtime the interop would work on.
 ;;
 ;; The same trap is written down in `scripts/maturity-loop/run.cljs` in the
 ;; superproject: a `#?(:clj int :cljs identity)` mutation scored 0 failures
-;; under `clojure -M:test` and 11 under nbb.
+;; under `kbb -M:test` and 11 under nbb.
 ;;
 ;; `kotoba.logistics.ui` is deliberately not here. It requires `html.core` and
 ;; `css.core`, which arrive as git deps the JVM toolchain resolves; putting it
