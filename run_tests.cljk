@@ -1,7 +1,7 @@
 #!/usr/bin/env nbb
-;; run_tests.cljs — the portable half of the suite, on a second runtime.
+;; run_tests.cljk — the portable half of the suite, on a second runtime.
 ;;
-;;   nbb --classpath src:test run_tests.cljs
+;;   nbb --classpath src:test run_tests.cljk
 ;;
 ;; ## Why a second runner exists
 ;;
