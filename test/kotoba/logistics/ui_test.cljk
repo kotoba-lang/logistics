@@ -1,6 +1,6 @@
 (ns kotoba.logistics.ui-test
   (:require [kotoba.lang.text :as str]
-            [clojure.test :refer [deftest is testing]]
+            [kotoba.test :refer [deftest is testing]]
             [kotoba.logistics :as log]
             [kotoba.logistics.ui :as ui]))
 

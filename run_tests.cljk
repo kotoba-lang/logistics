@@ -35,7 +35,7 @@
 ;; full green run (CLAUDE.md, ADR-2608136000, question 2). The marker on stdout
 ;; is printed only on a real pass.
 (ns run-tests
-  (:require [clojure.test :as t]
+  (:require [kotoba.test :as t]
             [kotoba.logistics-test]
             [kotoba.logistics.export-test]
             [kotoba.logistics.readback-test]))
