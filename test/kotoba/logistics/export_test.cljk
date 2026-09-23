@@ -9,7 +9,7 @@
   fields as its header, a quote that was opened and never closed, a control
   character that makes the document unreadable to every conforming parser."
   (:require [kotoba.lang.text :as str]
-            [clojure.test :refer [deftest is testing]]
+            [kotoba.test :refer [deftest is testing]]
             [kotoba.logistics :as log]
             [kotoba.logistics.export :as ex]
             [kotoba.logistics.readback :as rb]))

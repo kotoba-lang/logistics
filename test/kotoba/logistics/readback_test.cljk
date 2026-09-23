@@ -11,7 +11,7 @@
   The refusal cases matter as much as the accepting ones. An oracle that reads
   a corrupt document as a plausible one reports a green round trip for an
   exporter that has stopped working."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [kotoba.logistics.readback :as rb]))
 
 ;; ---------------------------------------------------------------------------
