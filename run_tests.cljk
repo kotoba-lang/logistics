@@ -32,7 +32,7 @@
 ;;
 ;; Without the floor, a require that silently resolves to nothing, or a
 ;; namespace dropped from the list below, prints the same "0 failures" as a
-;; full green run (CLAUDE.md, ADR-2608136000, question 2). The marker on stdout
+;; full green run (AGENTS.md, ADR-2608136000, question 2). The marker on stdout
 ;; is printed only on a real pass.
 (ns run-tests
   (:require [kotoba.test :as t]
